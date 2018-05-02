@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Did I Pay</string>
+    <string name="action_settings">Settings</string>
+    <string name="item_last_month_paid_text">Último pago en:</string>
+    <string name="item_checkbox_paid_text">Pagado</string>
+    <string name="new_item_activity_title">Nuevo Item</string>
+    <string name="new_item_name_hint">Nombre</string>
+    <string name="new_item_detail_hint">Detalle</string>
+    <string name="new_item_last_month_label">Último mes pagado</string>
+    <string name="new_item_type_label">Categoría</string>
+    <string name="new_item_btn_save">Guardar</string>
+    <string name="new_item_btn_cancel">Cancelar</string>
+    <string name="delete_item_dialog_title">Eliminar Item</string>
+    <string name="delete_item_dialog_description">¿Desea eliminar este item?</string>
+    <string name="delete_item_dialog_btn_delete">Eliminar</string>
+    <string name="delete_item_dialog_btn_cancel">Cancelar</string>
+    <string-array name="meses">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+
+    <string-array name="item_types">
+        <item>Tarjeta</item>
+        <item>Teléfono</item>
+        <item>Club</item>
+        <item>Otro</item>
+    </string-array>
+</resources>

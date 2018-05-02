@@ -25,7 +25,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
     private final LayoutInflater mInflater;
     private List<Item> mItems; // Cached copy of Items
     private final OnClickListener listener;
-    public String lastMonthPaidText;
+    private String lastMonthPaidText;
 
     public ItemListAdapter(Context context, OnClickListener listener) {
         mInflater = LayoutInflater.from(context);

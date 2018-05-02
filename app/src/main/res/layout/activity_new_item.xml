@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/new_item_name_hint"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
     <EditText
@@ -22,7 +22,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/new_item_detail_hint"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
     <TextView

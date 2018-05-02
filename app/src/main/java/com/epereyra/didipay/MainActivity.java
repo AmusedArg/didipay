@@ -115,15 +115,15 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage("¿Desea eliminar este item?")
-                        .setTitle("Eliminar item");
+        builder.setMessage(getLocalizedString(R.string.delete_item_dialog_description))
+                        .setTitle(getLocalizedString(R.string.delete_item_dialog_title));
 
-        builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getLocalizedString(R.string.delete_item_dialog_btn_delete), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 mItemViewModel.delete(item);
             }
         });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getLocalizedString(R.string.delete_item_dialog_btn_cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
             }
@@ -154,5 +154,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getLocalizedString(int resId){
+        return getResources().getString(resId);
     }
 }

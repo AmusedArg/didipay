@@ -1,6 +1,5 @@
 package com.epereyra.didipay;
 
-import android.app.DialogFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -21,24 +20,15 @@ import com.epereyra.didipay.main.adapter.ItemListAdapter;
 import com.epereyra.didipay.model.Item;
 import com.epereyra.didipay.viewmodel.ItemViewModel;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Item> servicios = new ArrayList<>();
-
-    DialogFragment newItemDialog;
-
     private ItemViewModel mItemViewModel;
 
     private static final int NEW_ITEM_ACTIVITY_REQUEST_CODE = 1;
-
-    public interface ClickListener{
-        void onLongClick(View view, int position);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if(item.isPaid()){ // se hizo click en falso, ahora esta pagado
                     item.setLastMonthPaid(Calendar.getInstance().get(Calendar.MONTH));
                 }else{ // estaba pagado, se desmarco
-                    item.setLastMonthPaid(item.getLastMonthPaid()-1);
+                    item.setLastPaidPreviousMonth();
                 }
                 mItemViewModel.update(item);
             }

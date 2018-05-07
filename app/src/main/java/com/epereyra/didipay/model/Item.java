@@ -87,4 +87,12 @@ public class Item {
     public boolean isCurrentMonthPaid(){
         return (lastMonthPaid == Calendar.getInstance().get(Calendar.MONTH) && isPaid);
     }
+
+    public void setLastPaidPreviousMonth(){
+        if(lastMonthPaid == 1){
+            lastMonthPaid = 12;
+        }else{
+            lastMonthPaid = lastMonthPaid - 1;
+        }
+    }
 }

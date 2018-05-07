@@ -15,10 +15,7 @@ import java.util.List;
 public interface ItemDao {
 
     @Query("SELECT * FROM item")
-    List<Item> getAll();
-
-    @Query("SELECT * FROM item ORDER BY last_month_paid ASC")
-    LiveData<List<Item>> getAllOrderByLastMonthPaid();
+    LiveData<List<Item>> getAll();
 
     @Insert
     void insertAll(Item... items);

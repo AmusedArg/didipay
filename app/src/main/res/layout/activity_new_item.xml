@@ -6,29 +6,40 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/new_item_name"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_new_item_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/new_item_name_hint"
-        android:inputType="textCapSentences"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/new_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/new_item_name_hint"
+            android:inputType="textCapSentences"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/new_item_detail"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_new_item_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/new_item_detail_hint"
-        android:inputType="textCapSentences"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/new_item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/new_item_detail_hint"
+            android:inputType="textCapSentences"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:id="@+id/textViewUltMes"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="@string/new_item_last_month_label"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
@@ -43,8 +54,9 @@
 
     <TextView
         android:id="@+id/textViewCategories"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:text="@string/new_item_type_label"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
@@ -61,29 +73,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/new_item_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/background_light"
             android:onClick="cancelSave"
-            android:text="@string/new_item_btn_cancel" />
+            android:text="@string/new_item_btn_cancel"
+            android:theme="@style/AppTheme.Button.Cancel" />
 
         <Button
             android:id="@+id/new_item_save"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
             android:onClick="saveItem"
             android:text="@string/new_item_btn_save"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:theme="@style/AppTheme.Button.Primary" />
     </LinearLayout>
 
 </LinearLayout>

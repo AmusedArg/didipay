@@ -18,7 +18,7 @@ public class ItemRepository {
     public ItemRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mItemDao = db.itemDao();
-        mAllItems = mItemDao.getAllOrderByLastMonthPaid();
+        mAllItems = mItemDao.getAll();
     }
 
     public LiveData<List<Item>> getAllItems() {

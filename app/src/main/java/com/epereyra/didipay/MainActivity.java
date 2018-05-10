@@ -38,16 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar c = Calendar.getInstance();
         String month = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+        int day = c.get(Calendar.DAY_OF_MONTH);
 
-        toolbar.setTitle(month.substring(0,1).toUpperCase() + month.substring(1) + " " + c.get(Calendar.YEAR));
+        toolbar.setTitle(day + " " + month.substring(0,1).toUpperCase() + month.substring(1) + " " + c.get(Calendar.YEAR));
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, NewItemActivity.class);
-            startActivityForResult(intent, NEW_ITEM_ACTIVITY_REQUEST_CODE);
+                Intent intent = new Intent(MainActivity.this, NewItemActivity.class);
+                startActivityForResult(intent, NEW_ITEM_ACTIVITY_REQUEST_CODE);
             }
         });
 

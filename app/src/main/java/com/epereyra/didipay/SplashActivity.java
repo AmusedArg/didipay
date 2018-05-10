@@ -13,4 +13,11 @@ public class SplashActivity extends AppCompatActivity {
         // close splash activity
         finish();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        finish();
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+    }
 }

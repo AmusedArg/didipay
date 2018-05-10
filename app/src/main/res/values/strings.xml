@@ -30,10 +30,11 @@
         <item>December</item>
     </string-array>
 
-    <string-array name="item_types">
-        <item>Credit Card</item>
-        <item>Phone</item>
-        <item>Club</item>
-        <item>Others</item>
-    </string-array>
+    <string name="category_item_credit_card">Credit Card</string>
+    <string name="category_item_phone">Phone Bill</string>
+    <string name="category_item_club">Club / Sports</string>
+    <string name="category_item_other">Other</string>
+    <string name="category_item_gym">Gym</string>
+    <string name="category_item_electric">Electric Bill</string>
+    <string name="category_item_loan">Loan</string>
 </resources>

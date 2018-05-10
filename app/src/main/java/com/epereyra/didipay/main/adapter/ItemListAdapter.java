@@ -114,6 +114,10 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             case 0: return R.drawable.ic_credit_card_black_24dp;
             case 1: return R.drawable.ic_call_black_24dp;
             case 2: return R.drawable.ic_golf_course_black_24dp;
+            case 3: return R.drawable.ic_bookmark_black_24dp;
+            case 4: return R.drawable.ic_fitness_center_black_24dp;
+            case 5: return R.drawable.ic_lightbulb_outline_black_24dp;
+            case 6: return R.drawable.ic_account_balance_black_24dp;
             default: return R.drawable.ic_bookmark_black_24dp;
         }
     }

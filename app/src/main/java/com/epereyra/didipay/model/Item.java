@@ -84,14 +84,14 @@ public class Item {
         this.id = id;
     }
 
-    public boolean isCurrentMonthPaid(){
+    public boolean isCurrentMonthPaid() {
         return (lastMonthPaid == Calendar.getInstance().get(Calendar.MONTH) && isPaid);
     }
 
-    public void setLastPaidPreviousMonth(){
-        if(lastMonthPaid == 1){
+    public void setLastPaidPreviousMonth() {
+        if (lastMonthPaid == 1) {
             lastMonthPaid = 12;
-        }else{
+        } else {
             lastMonthPaid = lastMonthPaid - 1;
         }
     }

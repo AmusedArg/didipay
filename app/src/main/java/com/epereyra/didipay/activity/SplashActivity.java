@@ -1,4 +1,4 @@
-package com.epereyra.didipay;
+package com.epereyra.didipay.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

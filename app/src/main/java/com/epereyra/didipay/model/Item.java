@@ -95,4 +95,13 @@ public class Item {
             lastMonthPaid = lastMonthPaid - 1;
         }
     }
+
+    public void updateLastMonthPaid() {
+        this.isPaid = !isPaid;
+        if(this.isPaid()){ // se hizo click en falso, ahora esta pagado
+            this.setLastMonthPaid(Calendar.getInstance().get(Calendar.MONTH));
+        }else{ // estaba pagado, se desmarco
+            this.setLastPaidPreviousMonth();
+        }
+    }
 }

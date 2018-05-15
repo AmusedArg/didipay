@@ -1,4 +1,4 @@
-package com.epereyra.didipay.main.adapter;
+package com.epereyra.didipay.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

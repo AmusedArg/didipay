@@ -1,4 +1,4 @@
-package com.epereyra.didipay;
+package com.epereyra.didipay.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -16,7 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.epereyra.didipay.main.adapter.ItemListAdapter;
+import com.epereyra.didipay.R;
+import com.epereyra.didipay.adapter.ItemListAdapter;
 import com.epereyra.didipay.model.Item;
 import com.epereyra.didipay.viewmodel.ItemViewModel;
 
@@ -57,12 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onIsPaidClick(Item item) {
-                item.setPaid(!item.isPaid());
-                if(item.isPaid()){ // se hizo click en falso, ahora esta pagado
-                    item.setLastMonthPaid(Calendar.getInstance().get(Calendar.MONTH));
-                }else{ // estaba pagado, se desmarco
-                    item.setLastPaidPreviousMonth();
-                }
+                item.updateLastMonthPaid();
                 mItemViewModel.update(item);
             }
 
@@ -107,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 2. Chain together various setter methods to set the dialog characteristics
         builder.setMessage(getLocalizedString(R.string.delete_item_dialog_description))
-                        .setTitle(getLocalizedString(R.string.delete_item_dialog_title));
+                .setTitle(getLocalizedString(R.string.delete_item_dialog_title));
 
         builder.setPositiveButton(getLocalizedString(R.string.delete_item_dialog_btn_delete), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -141,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             return true;
         }
 

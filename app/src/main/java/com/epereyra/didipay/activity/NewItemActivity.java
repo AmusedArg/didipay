@@ -1,4 +1,4 @@
-package com.epereyra.didipay;
+package com.epereyra.didipay.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.epereyra.didipay.R;
 import com.epereyra.didipay.model.ItemCategory;
 
 import java.util.ArrayList;
@@ -60,8 +61,8 @@ public class NewItemActivity extends AppCompatActivity {
         replyIntent.putExtra(EXTRA_NEW_ITEM_LAST_MONTH_PAID, lastMonthPaid);
         replyIntent.putExtra(EXTRA_NEW_ITEM_TYPE, type);
 
-        if(name.trim().length() == 0) { mEditItemNameLayout.setError(getResources().getString(R.string.input_required_text));};
-        if(details.trim().length() == 0) { mEditItemDetailLayout.setError(getResources().getString(R.string.input_required_text));};
+        if(name.trim().length() == 0) { mEditItemNameLayout.setError(getResources().getString(R.string.input_required_text));}
+        if(details.trim().length() == 0) { mEditItemDetailLayout.setError(getResources().getString(R.string.input_required_text));}
 
         if(name.trim().length() == 0 || details.trim().length() == 0){
             setResult(RESULT_CANCELED, replyIntent);

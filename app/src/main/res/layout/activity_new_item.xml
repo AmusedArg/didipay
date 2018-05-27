@@ -9,7 +9,8 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_new_item_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
         <EditText
             android:id="@+id/new_item_name"
             android:layout_width="match_parent"
@@ -23,7 +24,8 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_new_item_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
         <EditText
             android:id="@+id/new_item_detail"
             android:layout_width="match_parent"

@@ -9,8 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +29,10 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private ItemViewModel mItemViewModel;
+    private ItemListAdapter adapter;
 
     private static final int NEW_ITEM_ACTIVITY_REQUEST_CODE = 1;
+    private static final int EDIT_ITEM_ACTIVITY_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerview_items);
-        final ItemListAdapter adapter = new ItemListAdapter(this, new ItemListAdapter.OnClickListener() {
+
+        adapter = new ItemListAdapter(this, new ItemListAdapter.OnClickListener() {
 
             @Override
             public void onIsPaidClick(Item item) {
@@ -70,12 +75,26 @@ public class MainActivity extends AppCompatActivity {
             public void onLongItemClick(Item item) {
                 showDeleteItemDialog(item);
             }
+
+            @Override
+            public void onItemClick(Item item) {
+                Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
+                intent.putExtra(EditItemActivity.EXTRA_EDIT_ITEM_ID, item.getId());
+                intent.putExtra(EditItemActivity.EXTRA_EDIT_ITEM_NAME, item.getName());
+                intent.putExtra(EditItemActivity.EXTRA_EDIT_ITEM_DETAIL, item.getDetail());
+                intent.putExtra(EditItemActivity.EXTRA_EDIT_ITEM_LAST_MONTH_PAID, item.getLastMonthPaid());
+                intent.putExtra(EditItemActivity.EXTRA_EDIT_ITEM_CATEGORY, item.getCategory());
+                intent.putExtra(EditItemActivity.EXTRA_EDIT_ITEM_IS_PAID, item.isPaid());
+                startActivityForResult(intent, EDIT_ITEM_ACTIVITY_REQUEST_CODE);
+            }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
 
+        mItemViewModel.setFilterNameDetail(null);
         mItemViewModel.getAllItems().observe(this, new Observer<List<Item>>() {
             @Override
             public void onChanged(@Nullable final List<Item> items) {
@@ -83,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setItems(items);
             }
         });
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -92,12 +112,24 @@ public class MainActivity extends AppCompatActivity {
             String itemName = data.getStringExtra(NewItemActivity.EXTRA_NEW_ITEM_NAME);
             String detail = data.getStringExtra(NewItemActivity.EXTRA_NEW_ITEM_DETAIL);
             int lastMonthPaid = data.getIntExtra(NewItemActivity.EXTRA_NEW_ITEM_LAST_MONTH_PAID, 0);
-            int type = data.getIntExtra(NewItemActivity.EXTRA_NEW_ITEM_TYPE, 0);
+            int category = data.getIntExtra(NewItemActivity.EXTRA_NEW_ITEM_CATEGORY, 0);
             boolean isPaid = lastMonthPaid == Calendar.getInstance().get(Calendar.MONTH);
 
-            Item i = new Item(itemName, detail, isPaid, lastMonthPaid, type);
+            Item i = new Item(itemName, detail, isPaid, lastMonthPaid, category);
 
             mItemViewModel.insert(i);
+        }else if (requestCode == EDIT_ITEM_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            long id = data.getLongExtra(EditItemActivity.EXTRA_EDIT_ITEM_ID, -1);
+            String itemName = data.getStringExtra(EditItemActivity.EXTRA_EDIT_ITEM_NAME);
+            String detail = data.getStringExtra(EditItemActivity.EXTRA_EDIT_ITEM_DETAIL);
+            int lastMonthPaid = data.getIntExtra(EditItemActivity.EXTRA_EDIT_ITEM_LAST_MONTH_PAID, 0);
+            int category = data.getIntExtra(EditItemActivity.EXTRA_EDIT_ITEM_CATEGORY, 0);
+            boolean isPaid = data.getBooleanExtra(EditItemActivity.EXTRA_EDIT_ITEM_IS_PAID, false);
+
+            Item i = new Item(itemName, detail, isPaid, lastMonthPaid, category);
+            i.setId(id);
+            if(id < 0){ return; }
+            mItemViewModel.update(i);
         }
     }
 
@@ -129,6 +161,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mItemViewModel.setFilterNameDetail(newText);
+                return false;
+            }
+        });
         return true;
     }
 
@@ -137,12 +185,6 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

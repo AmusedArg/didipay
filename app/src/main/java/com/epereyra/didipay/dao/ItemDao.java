@@ -31,4 +31,7 @@ public interface ItemDao {
 
     @Update
     void update(Item item);
+
+    @Query("SELECT * FROM item WHERE name LIKE :text OR detail LIKE :text")
+    LiveData<List<Item>> search(String text);
 }

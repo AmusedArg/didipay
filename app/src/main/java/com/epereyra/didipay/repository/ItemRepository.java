@@ -25,13 +25,12 @@ public class ItemRepository {
         return mAllItems;
     }
 
-    public void insert (Item item) {
-        new insertAsyncTask(mItemDao).execute(item);
-    }
+    public void insert (Item item) { new insertAsyncTask(mItemDao).execute(item); }
     public void update (Item item) {
         new updateAsyncTask(mItemDao).execute(item);
     }
     public void delete (Item item) { new deleteAsyncTask(mItemDao).execute(item); }
+    public LiveData<List<Item>> search(String text) { return mItemDao.search(text); }
 
     private static class insertAsyncTask extends AsyncTask<Item, Void, Void> {
 

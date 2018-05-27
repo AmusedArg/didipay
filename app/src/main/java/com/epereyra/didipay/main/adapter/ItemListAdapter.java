@@ -20,6 +20,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
     public interface OnClickListener {
         void onIsPaidClick(Item item);
         void onLongItemClick(Item item);
+        void onItemClick(Item item);
     }
 
     private final LayoutInflater mInflater;
@@ -51,17 +52,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         }
 
         private void bind(final Item item, final OnClickListener listener) {
-            itemIsPaidCheckbox.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    listener.onIsPaidClick(item);
-                }
+            itemIsPaidCheckbox.setOnClickListener(v -> listener.onIsPaidClick(item));
+            itemView.setOnLongClickListener(v -> {
+                listener.onLongItemClick(item);
+                return false;
             });
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    listener.onLongItemClick(item);
-                    return false;
-                }
+            itemView.setOnClickListener(v -> {
+                listener.onItemClick(item);
             });
         }
     }
@@ -81,7 +78,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             String month = new DateFormatSymbols().getMonths()[current.getLastMonthPaid()];
             holder.itemLastMonthPaidTextView.setText(lastMonthPaidText + " " + month.substring(0,1).toUpperCase() + month.substring(1));
             holder.itemIsPaidCheckbox.setChecked(current.isCurrentMonthPaid());
-            holder.itemIconImage.setImageResource(getIcon(current.getType()));
+            holder.itemIconImage.setImageResource(getIcon(current.getCategory()));
         } else {
             // Covers the case of data not being ready yet.
             holder.itemNameTextView.setText(" ");
@@ -94,10 +91,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
     public void setItems(List<Item> Items){
         mItems = Items;
         notifyDataSetChanged();
-    }
-
-    public Item getItem(int pos){
-        return mItems.get(pos);
     }
 
     // getItemCount() is called many times, and when it is first called,

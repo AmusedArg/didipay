@@ -26,14 +26,14 @@ public class Item {
     private int lastMonthPaid;
 
     @ColumnInfo(name = "type")
-    private int type;
+    private int category;
 
-    public Item(String name, String detail, boolean isPaid, int lastMonthPaid, int type) {
+    public Item(String name, String detail, boolean isPaid, int lastMonthPaid, int category) {
         this.name = name;
         this.detail = detail;
         this.isPaid = isPaid;
         this.lastMonthPaid = lastMonthPaid;
-        this.setType(type);
+        this.setCategory(category);
     }
 
     public String getName() {
@@ -68,12 +68,12 @@ public class Item {
         this.lastMonthPaid = lastMonthPaid;
     }
 
-    public int getType() {
-        return type;
+    public int getCategory() {
+        return category;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setCategory(int category) {
+        this.category = category;
     }
 
     public long getId() {

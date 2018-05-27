@@ -14,6 +14,7 @@
     <string name="delete_item_dialog_description">¿Desea eliminar este item?</string>
     <string name="delete_item_dialog_btn_delete">Eliminar</string>
     <string name="delete_item_dialog_btn_cancel">Cancelar</string>
+    <string name="edit_item_activity_title">Editar Item</string>
     <string name="input_required_text">Obligatorio</string>
     <string-array name="meses">
         <item>Enero</item>
@@ -37,4 +38,7 @@
     <string name="category_item_gym">Gimnasio</string>
     <string name="category_item_electric">Luz</string>
     <string name="category_item_loan">Préstamo</string>
+
+    <!-- Menu -->
+    <string name="search">Buscar</string>
 </resources>

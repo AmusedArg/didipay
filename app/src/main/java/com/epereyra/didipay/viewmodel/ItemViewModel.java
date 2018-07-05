@@ -13,8 +13,8 @@ import java.util.List;
 
 public class ItemViewModel extends AndroidViewModel {
     private ItemRepository mItemRepository;
-    private final MutableLiveData<String> mFilterNameDetail = new MutableLiveData();
-    public final LiveData<List<Item>> mAllItems =
+    private final MutableLiveData<String> mFilterNameDetail = new MutableLiveData<>();
+    private final LiveData<List<Item>> mAllItems =
             Transformations.switchMap(mFilterNameDetail, (filter) -> {
                 if(filter == null || filter.isEmpty()){
                     return mItemRepository.getAllItems();

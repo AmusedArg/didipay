@@ -62,11 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onIsPaidClick(Item item) {
-                item.setPaid(!item.isPaid());
-                if(item.isPaid()){ // se hizo click en falso, ahora esta pagado
-                    item.setLastMonthPaid(Calendar.getInstance().get(Calendar.MONTH));
-                }else{ // estaba pagado, se desmarco
+                if(item.isCurrentMonthPaid()){
+                    item.setPaid(false);
                     item.setLastPaidPreviousMonth();
+                }else{
+                    item.setPaid(true);
+                    item.setLastMonthPaid(Calendar.getInstance().get(Calendar.MONTH));
                 }
                 mItemViewModel.update(item);
             }

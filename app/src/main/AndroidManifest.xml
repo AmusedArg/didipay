@@ -33,11 +33,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditItemActivity"
+        <activity
+            android:name=".EditItemActivity"
             android:excludeFromRecents="true"
             android:label="@string/edit_item_activity_title"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
